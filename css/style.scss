@@ -1,0 +1,467 @@
+@charset "UTF-8";
+
+body {
+  font-family: Verdana,
+    sans-serif;
+  margin: 0;
+  font-size: 62.5%;
+}
+
+a {
+  text-decoration: none;
+}
+
+ul,
+li {
+  list-style: none;
+}
+
+* {
+  margin: 0;
+  padding: 0;
+}
+
+img {
+  max-width: 100%;
+}
+
+
+/*-------------------------------------------
+ヘッダー
+-------------------------------------------*/
+header {
+  width: 100%;
+  height: 80px;
+  display: flex;
+  justify-content: space-between;
+  padding: 10px 20px;
+  position: fixed;
+  background: rgb(66, 67, 68);
+  z-index: 20;
+}
+
+.site-title {
+  margin: 0;
+  font-size: 3.0rem;
+  line-height: 60px;
+  color: #fff;
+  text-shadow: 1px 2px 3px #ccc6c6;
+  cursor: pointer;
+}
+
+.sp-menu {
+  margin-left: auto;
+  /* サイトタイトルとロゴを左右に配置するため */
+  color: #fff;
+  cursor: pointer;
+}
+
+#open {
+  font-size: 3.0rem;
+  padding: 5px 0;
+}
+
+// hideクラスを作成してマテリアルアイコン開いた時にアイコン（閉）の後ろに透ける（開）マークをなくすため
+#open.hide {
+  display: none;
+}
+
+.overlay {
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background: rgba(94, 92, 92, 0.8);
+  text-align: left;
+  padding: 50px;
+  opacity: 0;
+  pointer-events: none; // 下に配置したものが選択できるようにする
+  transition: opacity 0.6s; // メニューを押すとフワッと表示
+  z-index: 30;
+
+  li {
+    margin-top: 25px;
+    opacity: 0;
+    transform: translateY(20px);
+    transition: opacity 0.3s, transform 0.3s;
+  }
+}
+
+#close {
+  position: absolute;
+  top: 18px;
+  right: 20px;
+  font-size: 3.0rem;
+  color: #fff;
+  cursor: pointer;
+}
+
+.overlay.show {
+  opacity: 1;
+  pointer-events: auto;
+
+  li {
+    opacity: 1;
+    transform: none;
+
+    &:nth-child(1) {
+      transition-delay: 0.1s;
+    }
+
+    &:nth-child(2) {
+      transition-delay: 0.2s;
+    }
+
+    &:nth-child(3) {
+      transition-delay: 0.3s;
+    }
+  }
+}
+
+.sp-nav {
+  display: block;
+  position: fixed;
+  top: 0;
+  bottom: 0;
+  left: 0;
+  background: #fff;
+  width: 200px;
+  padding: 60px 25px;
+}
+
+.nav-menu {
+  border-top: solid 1px rgb(9, 8, 8);
+  font-size: 1.0rem;
+
+  li {
+    border-bottom: solid 1px rgb(9, 8, 8);
+    margin: 0;
+    padding: 20px 0;
+  }
+}
+
+.nav-others {
+  font-size: 0.8rem;
+  margin-top: 70px;
+}
+
+.pc-nav {
+  margin-left: 0;
+  position: relative;
+  opacity: 0;
+
+  ul {
+    position: absolute;
+    top: 27px;
+    right: 27px;
+    display: flex;
+
+    a {
+      display: block;
+      padding-left: 15px;
+      font-size: 2.25rem;
+      color: #fff;
+    }
+  }
+}
+
+@media screen and (min-width: 900px) {
+  .pc-nav {
+    margin-left: 0;
+    position: relative;
+    opacity: 1;
+
+    ul {
+      position: absolute;
+      top: 18px;
+      right: 0;
+
+      a {
+        font-size: 2.0rem;
+        color: #fff;
+      }
+    }
+  }
+
+  .sp-menu {
+    display: none;
+  }
+
+  .contact-content {
+    margin: 0 auto;
+    gap: 30px;
+  }
+}
+
+@media screen and (max-width: 600px) {
+  .contact {
+    padding: 80px 0;
+  }
+}
+
+// // @media screen and (min-width: 600px) {
+//   .contact-btn {
+//     width: 240px;
+//     height: 70px;
+//     background-color: #919191;
+//     border-radius: 50px;
+//     margin-bottom: 30px;
+//     .contact-mail a,
+//     .contact-phone a {
+//       font-size: 1.0rem;
+//       padding-top: 15px;
+//     }
+//   }
+// // }
+
+/*-------------------------------------------
+メイン
+-------------------------------------------*/
+.bg-video {
+  width: 100%;
+  margin-top: 80px;
+}
+
+/*-------------------------------------------
+セクション 共通
+-------------------------------------------*/
+.section-title {
+  font-size: 2.25rem;
+  text-align: center;
+  margin-bottom: 30px;
+}
+
+/*-------------------------------------------
+セクション pickup
+-------------------------------------------*/
+#pickup {
+  width: 100%;
+  padding-top: 100px;
+}
+
+//visibilityは要素の表示・非表示を切り替えられる
+.slider {
+  visibility: hidden;
+  display: flex;
+  justify-content: space-between;
+
+  li {
+    margin: 15px;
+
+    img {
+      width: 100%;
+      height: 217px;
+      object-fit: cover;
+    }
+  }
+}
+
+// .slick-initialized は、[slick.js]の読み込み後、スライダーの準備ができた状態になると、スライダー要素に対して付与されるクラス名
+.slider.slick-initialized {
+  visibility: visible;
+}
+
+.slick-next {
+  right: 10px;
+}
+
+.slick-prev {
+  left: 10px;
+}
+
+.slick-prev,
+.slick-next {
+  z-index: 10;
+}
+
+
+
+/*-------------------------------------------
+セクション feature
+-------------------------------------------*/
+#feature {
+  max-width: 1240px;
+  padding: 100px 15px 50px 15px;
+  margin: 0 auto 0 auto;
+
+  .grid {
+    display: grid;
+    gap: 25px;
+    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+    padding-top: 15px;
+  }
+
+  .item {
+    box-shadow: 0 0 8px 4px #ccc;
+    transition: all 0.3s ease;
+    img {
+      width: 100%;
+      height: 320px;
+      object-fit: cover;
+    }
+
+      .item-text {
+        padding: 30px;
+
+        p {
+          font-size: 0.8rem;
+          margin-bottom: 20px;
+        }
+      }
+    }
+}
+
+/*-------------------------------------------
+セクション contact
+-------------------------------------------*/
+.contact {
+  padding-top: 60px;
+  color: #fff;
+  padding-bottom: 60px;
+  background: #424344;
+}
+
+.contact-content {
+  display: flex;
+  justify-content: center;
+  margin: 0 auto;
+  gap: 30px;
+}
+
+.contact-btn {
+  width: 250px;
+  height: 60px;
+  background-color: #919191;
+  border-radius: 50px;
+  margin-bottom: 30px;
+}
+
+.contact-mail,
+.contact-phone {
+  display: block;
+  display: flex;
+  justify-content: center;
+  text-align: center;
+
+  a {
+    font-size: 1.0rem;
+    padding-top: 10px;
+  }
+}
+
+.contact-phone {
+  display: block;
+  display: flex;
+  justify-content: center;
+  text-align: center;
+
+  p {
+    font-size: 1.0rem;
+    padding-top: 10px;
+  }
+}
+
+.contact-info p {
+  padding-bottom: 5px;
+  text-align: center;
+  font-size: 1.5rem;
+}
+
+// .info-btn {
+//   width: 350px;
+//   height: 60px;
+//   font-size: 1.0rem;
+// }
+/*-------------------------------------------
+info.html 問い合わせフォーム
+-------------------------------------------*/
+.title-form {
+  font-weight: bold;
+  margin: 20px 0 0 20px;
+
+  h1 {
+    font-size: 2.3rem;
+  }
+
+  h2 {
+    padding-top: 30px;
+    font-size: 1.4rem;
+  }
+}
+
+form {
+  max-width: 550px;
+  margin: 0 auto;
+  margin-top: 40px;
+
+  .item {
+    font-size: 1.1rem;
+    overflow: hidden;
+    margin-bottom: 30px;
+    display: flex;
+  }
+}
+
+.label {
+  width: 250px;
+  margin-right: 20px;
+  border-left: solid 3px #72d2de;
+  padding-left: 10px;
+  line-height: 2;
+}
+
+.inputs {
+  width: 300px;
+  border: solid 1px #aaa;
+  border-radius: 5px;
+  padding: 10px;
+  font-size: 1.0rem;
+}
+
+textarea {
+  width: 300px;
+  border: solid 1px #aaa;
+  border-radius: 5px;
+  padding: 10px;
+  font-size: 1.0rem;
+}
+
+select {
+  width: 300px;
+  padding: 10px;
+  border: 1px solid #CCCCCC;
+  border-radius: 5px;
+  font-size: 0.9rem;
+}
+
+.comment {
+  margin: 0;
+  padding: 10px;
+  font-size: 0.8rem;
+}
+
+.btn-area {
+  width: 260px;
+  height: 40px;
+  line-height: 40px;
+  text-align: center;
+  border: 1px solid #2996CC;
+  border-radius: 5px;
+  background: #2996CC;
+  color: #fff;
+  font-size: 1.0rem;
+  font-weight: bold;
+  margin: 0 auto;
+  margin-top: 50px;
+}
+
+/*-------------------------------------------
+フッター
+-------------------------------------------*/
+footer {
+  text-align: center;
+  padding: 10px;
+  color: #fff;
+  background: #424344;
+}
