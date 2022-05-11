@@ -180,15 +180,8 @@ header {
   .sp-menu {
     display: none;
   }
-  .contact-content {
-    margin: 0 auto;
-    gap: 30px;
-  }
-}
-
-@media screen and (max-width: 600px) {
-  .contact {
-    padding: 80px 0;
+  .contact-info {
+    margin-top: 15px;
   }
 }
 
@@ -300,7 +293,7 @@ header {
   display: flex;
   justify-content: center;
   margin: 0 auto;
-  gap: 30px;
+  flex-direction: column;
 }
 
 .contact-btn {
@@ -308,19 +301,17 @@ header {
   height: 60px;
   background-color: #919191;
   border-radius: 50px;
-  margin-bottom: 30px;
+  margin-bottom: 15px;
 }
 
-.contact-mail,
-.contact-phone {
+.contact-mail {
   display: block;
   display: flex;
   justify-content: center;
   text-align: center;
 }
 
-.contact-mail a,
-.contact-phone a {
+.contact-mail a {
   font-size: 1.0rem;
   padding-top: 10px;
 }
